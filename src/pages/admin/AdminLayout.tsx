@@ -14,7 +14,7 @@ import {
   MessageSquare,
 } from "lucide-react";
 import { useState } from "react";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.webp";
 
 const navItems = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, end: true },
@@ -60,10 +60,9 @@ export default function AdminLayout() {
             end={item.end}
             onClick={() => setSidebarOpen(false)}
             className={({ isActive }) =>
-              `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200 ${
-                isActive
-                  ? "bg-primary-600 text-white shadow-md shadow-primary-900/30"
-                  : "text-neutral-400 hover:text-white hover:bg-neutral-800"
+              `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200 ${isActive
+                ? "bg-primary-600 text-white shadow-md shadow-primary-900/30"
+                : "text-neutral-400 hover:text-white hover:bg-neutral-800"
               }`
             }
           >

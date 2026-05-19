@@ -43,7 +43,7 @@ export default function TestimonialsSection() {
   }
 
   return (
-    <section className={`relative py-24 md:py-28 overflow-hidden cloud-texture ${isDark ? "" : "bg-white/60"}`}>
+    <section className="relative py-24 md:py-28 overflow-hidden cloud-texture">
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute top-0 left-0 right-0 section-divider-sky opacity-70" />
         <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full blur-3xl ${isDark ? "bg-sky-500/5" : "bg-sky-200/25"}`} />
@@ -70,9 +70,7 @@ export default function TestimonialsSection() {
           <>
             <div
               key={t._id}
-              className={`testimonial-enter relative rounded-3xl p-10 sm:p-14 border ${
-                isDark ? "border-white/8 bg-white/[0.04]" : "border-slate-200 bg-white shadow-sm"
-              }`}
+              className="testimonial-enter relative rounded-3xl p-10 sm:p-14 glass-sky"
               style={{ "--tx": tx } as React.CSSProperties}
             >
               <div className="absolute top-8 right-8 opacity-10">
@@ -132,9 +130,7 @@ export default function TestimonialsSection() {
                   <button
                     type="button"
                     onClick={() => go(-1)}
-                    className={`h-10 w-10 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 ${
-                      isDark ? "bg-white/5 border border-white/10 text-slate-400 hover:text-white" : "bg-slate-100 border border-slate-200"
-                    }`}
+                    className="h-10 w-10 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 glass-sky text-slate-500 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-300"
                     aria-label="Previous"
                   >
                     <ChevronLeft size={16} />
@@ -142,9 +138,7 @@ export default function TestimonialsSection() {
                   <button
                     type="button"
                     onClick={() => go(1)}
-                    className={`h-10 w-10 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 ${
-                      isDark ? "bg-white/5 border border-white/10 text-slate-400 hover:text-white" : "bg-slate-100 border border-slate-200"
-                    }`}
+                    className="h-10 w-10 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 glass-sky text-slate-500 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-300"
                     aria-label="Next"
                   >
                     <ChevronRight size={16} />

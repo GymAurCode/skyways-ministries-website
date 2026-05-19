@@ -64,11 +64,7 @@ export default function AboutSection({ content }: Props) {
               data-aos="fade-up"
               data-aos-delay={i * 100}
               data-aos-once="true"
-              className={`rounded-2xl border p-8 transition-shadow duration-300 hover:shadow-lg ${
-                isDark
-                  ? "bg-white/[0.04] border-white/10 hover:border-sky-400/20"
-                  : "bg-white/80 border-slate-200/80 hover:border-sky-200 shadow-sm"
-              }`}
+              className="rounded-2xl p-8 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 glass-sky"
             >
               <div
                 className={`h-12 w-12 rounded-xl flex items-center justify-center mb-6 ${

@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev:frontend": "vite",
+    "dev:backend": "node server.js",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -18,12 +20,15 @@
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^1.14.0",
     "mongoose": "^8.15.0",
+    "express": "^4.21.2",
+    "dotenv": "^16.4.5",
     "multer": "^2.0.1",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-router-dom": "^7.15.0"
   },
   "devDependencies": {
+    "concurrently": "^9.1.0",
     "@eslint/js": "^10.0.1",
     "@types/bcryptjs": "^2.4.6",
     "@types/jsonwebtoken": "^9.0.9",

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import type { SiteContent } from "../types";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.webp";
 import { useTheme } from "../contexts/ThemeContext";
 
 interface Props {
@@ -54,13 +54,12 @@ export default function Navbar({ content }: Props) {
 
   return (
     <nav
-      className={`fixed top-3 left-4 right-4 z-50 transition-[background,box-shadow,border-color] duration-300 rounded-2xl ${
-        scrolled
+      className={`fixed top-3 left-4 right-4 z-50 transition-[background,box-shadow,border-color] duration-300 rounded-2xl ${scrolled
           ? isDark
-            ? "bg-slate-950/85 backdrop-blur-xl border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.35)]"
+            ? "bg-nightsky-950/80 backdrop-blur-xl border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.35)]"
             : "glass-sky border border-sky-100/80 shadow-[0_12px_40px_rgba(14,116,144,0.08)]"
           : "bg-transparent border border-transparent"
-      }`}
+        }`}
     >
       {scrolled && (
         <div className="absolute top-0 left-8 right-8 h-px section-divider-sky opacity-80 rounded-full" />
@@ -79,17 +78,15 @@ export default function Navbar({ content }: Props) {
             </div>
             <div className="hidden sm:block">
               <span
-                className={`font-heading font-bold text-[11px] leading-tight block tracking-widest transition-colors duration-300 ${
-                  onTopHero ? "text-white" : isDark ? "text-white" : "text-slate-800"
-                }`}
+                className={`font-heading font-bold text-[11px] leading-tight block tracking-widest transition-colors duration-300 ${onTopHero ? "text-white" : isDark ? "text-white" : "text-slate-800"
+                  }`}
               >
                 {content.institute_name || "SKYWAY MINISTRIES"}
               </span>
               {content.tagline && (
                 <span
-                  className={`text-[8px] font-semibold tracking-[0.25em] uppercase transition-colors ${
-                    onTopHero ? "text-sky-200" : !isDark ? "text-sky-600" : "text-sky-200"
-                  }`}
+                  className={`text-[8px] font-semibold tracking-[0.25em] uppercase transition-colors ${onTopHero ? "text-sky-200" : !isDark ? "text-sky-600" : "text-sky-200"
+                    }`}
                 >
                   {content.tagline}
                 </span>
@@ -103,20 +100,18 @@ export default function Navbar({ content }: Props) {
                 key={link.to}
                 to={link.to}
                 onClick={() => handleNavClick(link)}
-                className={`relative px-4 py-2 rounded-xl text-[13px] font-medium transition-colors duration-200 group ${
-                  isActive(link.to)
+                className={`relative px-4 py-2 rounded-xl text-[13px] font-medium transition-colors duration-200 group ${isActive(link.to)
                     ? "text-sky-500 dark:text-sky-300"
                     : onTopHero
-                    ? "text-white/85 hover:text-white"
-                    : isDark
-                    ? "text-slate-300 hover:text-white"
-                    : "text-slate-600 hover:text-slate-900"
-                }`}
+                      ? "text-white/85 hover:text-white"
+                      : isDark
+                        ? "text-slate-300 hover:text-white"
+                        : "text-slate-600 hover:text-slate-900"
+                  }`}
               >
                 <span
-                  className={`absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 ${
-                    isDark ? "bg-white/6" : "bg-sky-500/8"
-                  }`}
+                  className={`absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 ${isDark ? "bg-white/6" : "bg-sky-500/8"
+                    }`}
                 />
                 <span className="relative z-10">{link.label}</span>
                 {isActive(link.to) && (
@@ -130,15 +125,14 @@ export default function Navbar({ content }: Props) {
             <button
               type="button"
               onClick={toggleTheme}
-              className={`p-2 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 ${
-                isDark
+              className={`p-2 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 ${isDark
                   ? "text-slate-400 hover:text-white hover:bg-white/8"
                   : onTopHero
-                  ? "text-white/80 hover:text-white hover:bg-white/10"
-                  : scrolled
-                  ? "text-slate-500 hover:text-slate-900 hover:bg-sky-50"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-sky-50/80"
-              }`}
+                    ? "text-white/80 hover:text-white hover:bg-white/10"
+                    : scrolled
+                      ? "text-slate-500 hover:text-slate-900 hover:bg-sky-50"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-sky-50/80"
+                }`}
               aria-label="Toggle theme"
             >
               {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
@@ -146,15 +140,14 @@ export default function Navbar({ content }: Props) {
 
             <button
               type="button"
-              className={`lg:hidden p-2 rounded-xl transition-colors ${
-                isDark
+              className={`lg:hidden p-2 rounded-xl transition-colors ${isDark
                   ? "text-slate-300 hover:bg-white/8"
                   : onTopHero
-                  ? "text-white hover:bg-white/10"
-                  : scrolled
-                  ? "text-slate-700 hover:bg-sky-50"
-                  : "text-slate-700 hover:bg-sky-50"
-              }`}
+                    ? "text-white hover:bg-white/10"
+                    : scrolled
+                      ? "text-slate-700 hover:bg-sky-50"
+                      : "text-slate-700 hover:bg-sky-50"
+                }`}
               onClick={() => setOpen(!open)}
               aria-label="Toggle menu"
               aria-expanded={open}
@@ -166,9 +159,8 @@ export default function Navbar({ content }: Props) {
       </div>
 
       <div
-        className={`lg:hidden overflow-hidden transition-[max-height,opacity] duration-300 ease-out border-t ${
-          open ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0 pointer-events-none border-transparent"
-        } ${isDark ? "border-white/[0.06] bg-slate-950/95 backdrop-blur-xl rounded-b-2xl" : "border-sky-100/80 bg-white/95 backdrop-blur-xl rounded-b-2xl"}`}
+        className={`lg:hidden overflow-hidden transition-[max-height,opacity] duration-300 ease-out border-t ${open ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0 pointer-events-none border-transparent"
+          } ${isDark ? "border-white/[0.06] bg-nightsky-950/95 backdrop-blur-xl rounded-b-2xl" : "border-sky-100/80 bg-white/95 backdrop-blur-xl rounded-b-2xl"}`}
       >
         <div className="px-4 py-4 space-y-1">
           {navLinks.map((link) => (
@@ -176,13 +168,12 @@ export default function Navbar({ content }: Props) {
               key={link.to}
               to={link.to}
               onClick={() => handleNavClick(link)}
-              className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors duration-200 ${
-                isActive(link.to)
+              className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors duration-200 ${isActive(link.to)
                   ? "bg-sky-500/12 text-sky-600 dark:text-sky-300 border border-sky-500/20"
                   : isDark
-                  ? "text-slate-300 hover:text-white hover:bg-white/5"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-sky-50"
-              }`}
+                    ? "text-slate-300 hover:text-white hover:bg-white/5"
+                    : "text-slate-600 hover:text-slate-900 hover:bg-sky-50"
+                }`}
             >
               {link.label}
             </Link>

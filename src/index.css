@@ -27,7 +27,11 @@
     background: linear-gradient(180deg, #f5fbff 0%, #e8f4fc 40%, #f8fafc 100%);
   }
 
-  h1, h2, h3, h4, h5 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     font-family: "Cinzel", "Playfair Display", Georgia, serif;
   }
 
@@ -41,17 +45,35 @@
   }
 
   /* Premium scrollbar */
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: #0a1522; }
-  ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #0B5CFF, #071B3B); border-radius: 4px; }
-  ::-webkit-scrollbar-thumb:hover { background: #0B5CFF; }
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a1522;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #0B5CFF, #071B3B);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0B5CFF;
+  }
 
   /* Light mode scrollbar */
-  .light ::-webkit-scrollbar-track { background: #f1f5f9; }
-  .light ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #0B5CFF, #0843c4); }
+  .light ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+
+  .light ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #0B5CFF, #0843c4);
+  }
 }
 
 @layer utilities {
+
   /* ── Glass morphism ─────────────────────────────────────────────────── */
   .glass-dark {
     background: rgba(7, 27, 59, 0.55);
@@ -139,7 +161,7 @@
 
   /* ── Shimmer ────────────────────────────────────────────────────────── */
   .shimmer {
-    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%);
     background-size: 200% 100%;
     animation: shimmer 2.5s linear infinite;
   }
@@ -341,6 +363,7 @@
     padding: 1px;
     background: linear-gradient(135deg, rgba(11, 92, 255, 0.5), rgba(251, 191, 36, 0.3), rgba(11, 92, 255, 0.5));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
@@ -368,8 +391,17 @@
   }
 
   @keyframes scrollDot {
-    0%, 100% { transform: translateY(0); opacity: 1; }
-    50% { transform: translateY(10px); opacity: 0.3; }
+
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    50% {
+      transform: translateY(10px);
+      opacity: 0.3;
+    }
   }
 
   /* ── Page sky background (sections stack on this) ─────────────────── */
@@ -409,6 +441,7 @@
       opacity: 0;
       transform: translateX(var(--tx, 12px));
     }
+
     to {
       opacity: 1;
       transform: translateX(0);
@@ -448,6 +481,7 @@
     from {
       transform: translateX(-100%);
     }
+
     to {
       transform: translateX(0);
     }

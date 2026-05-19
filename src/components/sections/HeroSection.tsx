@@ -1,7 +1,7 @@
 import { Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { SiteContent } from "../../types";
-import skywaysDefault from "../../assets/skyways.jpg";
+import skywaysDefault from "../../assets/skyways.webp";
 
 interface Props {
   content: SiteContent;
@@ -28,9 +28,10 @@ export default function HeroSection({ content }: Props) {
       </div>
 
       {/* Soft dark + sky overlay for readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-900/55 to-sky-950/88" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_120%_80%_at_50%_20%,rgba(255,255,255,0.14)_0%,transparent_55%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgba(15,23,42,0.85)_0%,transparent_50%)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-nightsky-950/75 via-nightsky-900/55 to-nightsky-950/88" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_120%_80%_at_50%_20%,rgba(255,255,255,0.18)_0%,transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgba(4,9,20,0.85)_0%,transparent_50%)]" />
+      <div className="cloud-drift-overlay opacity-50" aria-hidden />
 
       {/* Soft glow — static, GPU-friendly */}
       <div
@@ -151,7 +152,7 @@ export default function HeroSection({ content }: Props) {
       </div>
 
       {/* Cinematic bottom fade into page body */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 sm:h-48 bg-gradient-to-t from-[#e8f4fc] via-[#e8f4fc]/70 to-transparent pointer-events-none dark:from-navy-950 dark:via-navy-950/80" />
+      <div className="absolute bottom-0 left-0 right-0 h-40 sm:h-48 bg-gradient-to-t from-heavenly-50 via-heavenly-50/70 to-transparent pointer-events-none dark:from-nightsky-950 dark:via-nightsky-950/80" />
     </section>
   );
 }

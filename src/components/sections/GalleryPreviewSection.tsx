@@ -31,7 +31,7 @@ export default function GalleryPreviewSection() {
   }, [lightbox]);
 
   return (
-    <section id="gallery-preview" className={`relative py-24 md:py-28 overflow-hidden cloud-texture ${isDark ? "bg-[#050f1a]/70" : "bg-sky-50/35"}`}>
+    <section id="gallery-preview" className="relative py-24 md:py-28 overflow-hidden cloud-texture">
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute top-0 left-0 right-0 section-divider-sky opacity-70" />
       </div>
@@ -53,7 +53,7 @@ export default function GalleryPreviewSection() {
             </div>
             <Link
               to="/gallery"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-sky-500 to-primary-500 text-white text-sm font-semibold shadow-md hover:opacity-95 hover:-translate-y-0.5 transition-all shrink-0"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-sky-400 to-sky-500 text-white text-sm font-semibold shadow-[0_8px_32px_rgba(56,189,248,0.25)] hover:shadow-[0_8px_32px_rgba(56,189,248,0.4)] hover:-translate-y-0.5 transition-all shrink-0"
             >
               View more
             </Link>
@@ -71,7 +71,7 @@ export default function GalleryPreviewSection() {
           </div>
         ) : images.length === 0 ? (
           <div
-            className={`text-center py-16 rounded-2xl border ${isDark ? "border-white/10 bg-white/[0.03]" : "border-slate-200 bg-white/60"}`}
+            className="text-center py-16 rounded-2xl glass-sky"
             data-aos="fade-up"
             data-aos-once="true"
           >
@@ -88,9 +88,7 @@ export default function GalleryPreviewSection() {
                 data-aos-delay={i * 70}
                 data-aos-once="true"
                 onClick={() => setLightbox(img)}
-                className={`group relative aspect-square rounded-2xl overflow-hidden border text-left transition-transform duration-300 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 ${
-                  isDark ? "border-white/10 bg-white/5" : "border-slate-200 bg-white shadow-sm"
-                }`}
+                className="group relative aspect-square rounded-2xl overflow-hidden text-left transition-transform duration-300 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 glass-sky"
               >
                 <img src={img.image_url} alt={img.caption || "Gallery"} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async" />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">

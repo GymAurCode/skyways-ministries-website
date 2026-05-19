@@ -11,6 +11,32 @@ export default {
         body: ["Inter", "system-ui", "sans-serif"],
       },
       colors: {
+        heavenly: {
+          50: "#f0f9ff",
+          100: "#e0f2fe",
+          200: "#bae6fd",
+          300: "#7dd3fc",
+          400: "#38bdf8",
+          500: "#0ea5e9",
+          600: "#0284c7",
+          700: "#0369a1",
+          800: "#075985",
+          900: "#0c4a6e",
+          950: "#082f49",
+        },
+        nightsky: {
+          50: "#f4f6f8",
+          100: "#e2e8f0",
+          200: "#c8d6e5",
+          300: "#9db4d1",
+          400: "#6e91bd",
+          500: "#4971a3",
+          600: "#335582",
+          700: "#223b5e",
+          800: "#13233b",
+          900: "#091324",
+          950: "#040914",
+        },
         primary: {
           50: "#e8f0ff",
           100: "#c5d6ff",
@@ -74,6 +100,7 @@ export default {
         "beam": "beam 3s ease-in-out infinite",
         "orbit": "orbit 12s linear infinite",
         "twinkle": "twinkle 3s ease-in-out infinite",
+        "cloud-drift": "cloudDrift 25s linear infinite",
       },
       keyframes: {
         fadeIn: {
@@ -133,6 +160,11 @@ export default {
         twinkle: {
           "0%, 100%": { opacity: "0.2", transform: "scale(0.8)" },
           "50%": { opacity: "1", transform: "scale(1.2)" },
+        },
+        cloudDrift: {
+          "0%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(-20px)" },
+          "100%": { transform: "translateX(0)" },
         },
       },
       borderWidth: { 3: "3px" },

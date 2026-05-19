@@ -1,7 +1,7 @@
 import { Mail, Phone, MapPin, Globe, Share2, MessageCircle, PlayCircle, ArrowRight, Heart, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { SiteContent } from "../types";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.webp";
 
 export default function Footer({ content }: { content: SiteContent }) {
   const year = new Date().getFullYear();
@@ -15,7 +15,7 @@ export default function Footer({ content }: { content: SiteContent }) {
   ];
 
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-[#0a1522] to-[#050c18] text-slate-300">
+    <footer className="relative overflow-hidden bg-gradient-to-b from-nightsky-950 via-[#091324] to-nightsky-950 text-slate-300">
       <div className="absolute top-0 left-0 right-0 h-px section-divider-sky opacity-90" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[min(900px,100%)] h-64 bg-sky-500/6 blur-[100px] rounded-full pointer-events-none" />
 

@@ -9,16 +9,46 @@
  *   ADMIN_USERNAME — (optional) defaults to "admin"
  *   ADMIN_PASSWORD — REQUIRED: set a strong password in .env, never hardcoded
  */
-import "dotenv/config";
+import fs from "fs";
+import path from "path";
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
+import { formatMongoDBURI } from "./lib/db.js";
+
+// ── Pure JS .env Loader (Zero external dependencies) ───────────────────────────
+try {
+  const envPath = path.resolve(process.cwd(), ".env");
+  if (fs.existsSync(envPath)) {
+    const envContent = fs.readFileSync(envPath, "utf-8");
+    envContent.split(/\r?\n/).forEach((line) => {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#")) return;
+      const index = trimmed.indexOf("=");
+      if (index > 0) {
+        const key = trimmed.slice(0, index).trim();
+        let val = trimmed.slice(index + 1).trim();
+        if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+          val = val.slice(1, -1);
+        }
+        if (!process.env[key]) {
+          process.env[key] = val;
+        }
+      }
+    });
+  }
+} catch (e) {
+  console.warn("⚠️ Failed to load .env file:", e.message);
+}
+// ──────────────────────────────────────────────────────────────────────────────
 
 // ── Validate required env vars ────────────────────────────────────────────────
-const MONGODB_URI = process.env.MONGODB_URI;
-if (!MONGODB_URI) {
+const rawURI = process.env.MONGODB_URI;
+if (!rawURI) {
   console.error("❌  MONGODB_URI is not set in .env");
   process.exit(1);
 }
+const MONGODB_URI = formatMongoDBURI(rawURI);
+
 
 const ADMIN_USERNAME = (process.env.ADMIN_USERNAME || "admin").trim().toLowerCase();
 /** Set in .env — use `admin123` for local seed only (change in production). */
@@ -61,15 +91,23 @@ async function seed() {
   console.log("✅  Connected to MongoDB");
 
   // ── Admin user (idempotent) ──────────────────────────────────────────────
-  const existing = await Admin.findOne({ username: ADMIN_USERNAME });
+  const existing = await Admin.findOne({ username: ADMIN_USERNAME }).select("+password");
+  const hashed = await bcrypt.hash(adminPassword, 12);
   if (!existing) {
-    const hashed = await bcrypt.hash(adminPassword, 12);
     await Admin.create({ username: ADMIN_USERNAME, password: hashed });
     // Never log the actual password
     console.log(`✅  Admin created  →  username: ${ADMIN_USERNAME}`);
     console.log("    Password was read from ADMIN_PASSWORD env var (not logged for security)");
   } else {
-    console.log(`ℹ️   Admin "${ADMIN_USERNAME}" already exists — skipping (use Settings to change password)`);
+    // Check if password hash is different, and update if needed
+    const matches = await bcrypt.compare(adminPassword, existing.password);
+    if (!matches) {
+      existing.password = hashed;
+      await existing.save();
+      console.log(`✅  Admin "${ADMIN_USERNAME}" password updated in database to match .env`);
+    } else {
+      console.log(`ℹ️   Admin "${ADMIN_USERNAME}" already exists with the correct password — skipping`);
+    }
   }
 
   // ── Default site content (idempotent) ────────────────────────────────────

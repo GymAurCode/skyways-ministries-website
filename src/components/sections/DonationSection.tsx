@@ -20,9 +20,8 @@ function DetailBlock({
   if (!value?.trim()) return null;
   return (
     <div
-      className={`rounded-xl p-4 border ${
-        isDark ? "bg-white/[0.04] border-white/10" : "bg-white/60 border-slate-200"
-      }`}
+      className={`rounded-xl p-4 border ${isDark ? "bg-white/[0.04] border-white/10" : "bg-white/60 border-slate-200"
+        }`}
     >
       <div className={`text-xs font-semibold uppercase tracking-wider mb-2 ${isDark ? "text-sky-300" : "text-sky-700"}`}>
         {label}

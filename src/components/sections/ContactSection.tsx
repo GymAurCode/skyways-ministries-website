@@ -44,7 +44,7 @@ export default function ContactSection({ content }: Props) {
   }
 
   return (
-    <section id="contact" className={`relative py-24 md:py-28 overflow-hidden cloud-texture ${isDark ? "bg-[#050f1a]/60" : "bg-sky-50/40"}`}>
+    <section id="contact" className="relative py-24 md:py-28 overflow-hidden cloud-texture">
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute top-0 left-0 right-0 section-divider-sky opacity-70" />
         <div className={`absolute bottom-0 right-0 w-96 h-96 rounded-full blur-3xl ${isDark ? "bg-sky-500/5" : "bg-sky-200/30"}`} />
@@ -101,9 +101,7 @@ export default function ContactSection({ content }: Props) {
                   <a
                     key={item.label}
                     href={item.href}
-                    className={`flex items-start gap-4 p-5 rounded-2xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md ${
-                      isDark ? `${item.bg} ${item.border}` : "bg-white/90 border-slate-200 hover:border-sky-200"
-                    }`}
+                    className="flex items-start gap-4 p-5 rounded-2xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md glass-sky"
                   >
                     <div className={`h-11 w-11 rounded-xl ${item.bg} border ${item.border} flex items-center justify-center flex-shrink-0`}>
                       <item.icon size={18} className={item.color} />
@@ -116,7 +114,7 @@ export default function ContactSection({ content }: Props) {
                 ) : null
               )}
 
-              <div className={`rounded-2xl p-6 border ${isDark ? "bg-white/3 border-white/6" : "bg-white border-slate-200 shadow-sm"}`}>
+              <div className="rounded-2xl p-6 glass-sky">
                 <h4 className={`font-heading font-semibold text-base mb-5 flex items-center gap-2 ${isDark ? "text-white" : "text-slate-800"}`}>
                   <Clock size={16} className="text-sky-500 dark:text-sky-400" />
                   Service schedule
@@ -178,11 +176,7 @@ export default function ContactSection({ content }: Props) {
                       maxLength={100}
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      className={`w-full px-4 py-3 rounded-xl text-sm outline-none transition ${
-                        isDark
-                          ? "bg-white/5 border border-white/8 text-white placeholder-slate-600 focus:border-sky-400/50"
-                          : "bg-slate-50 border border-slate-200 text-slate-900 focus:border-sky-400"
-                      }`}
+                      className="w-full px-4 py-3 rounded-xl text-sm outline-none transition input-premium"
                       placeholder="Your name"
                     />
                   </div>
@@ -196,11 +190,7 @@ export default function ContactSection({ content }: Props) {
                       maxLength={100}
                       value={form.email}
                       onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      className={`w-full px-4 py-3 rounded-xl text-sm outline-none transition ${
-                        isDark
-                          ? "bg-white/5 border border-white/8 text-white placeholder-slate-600 focus:border-sky-400/50"
-                          : "bg-slate-50 border border-slate-200 text-slate-900 focus:border-sky-400"
-                      }`}
+                      className="w-full px-4 py-3 rounded-xl text-sm outline-none transition input-premium"
                       placeholder="you@example.com"
                     />
                   </div>
@@ -213,11 +203,7 @@ export default function ContactSection({ content }: Props) {
                       maxLength={200}
                       value={form.subject}
                       onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                      className={`w-full px-4 py-3 rounded-xl text-sm outline-none transition ${
-                        isDark
-                          ? "bg-white/5 border border-white/8 text-white placeholder-slate-600 focus:border-sky-400/50"
-                          : "bg-slate-50 border border-slate-200 text-slate-900 focus:border-sky-400"
-                      }`}
+                      className="w-full px-4 py-3 rounded-xl text-sm outline-none transition input-premium"
                       placeholder="How can we help?"
                     />
                   </div>
@@ -231,18 +217,14 @@ export default function ContactSection({ content }: Props) {
                       maxLength={5000}
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      className={`w-full px-4 py-3 rounded-xl text-sm outline-none resize-none transition ${
-                        isDark
-                          ? "bg-white/5 border border-white/8 text-white placeholder-slate-600 focus:border-sky-400/50"
-                          : "bg-slate-50 border border-slate-200 text-slate-900 focus:border-sky-400"
-                      }`}
+                      className="w-full px-4 py-3 rounded-xl text-sm outline-none resize-none transition input-premium"
                       placeholder="Your message…"
                     />
                   </div>
                   <button
                     type="submit"
                     disabled={sending}
-                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-primary-500 text-white font-semibold text-sm shadow-md hover:opacity-95 transition-all disabled:opacity-60"
+                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-gradient-to-r from-sky-400 to-sky-500 text-white font-semibold text-sm shadow-[0_8px_32px_rgba(56,189,248,0.25)] hover:shadow-[0_8px_32px_rgba(56,189,248,0.4)] hover:-translate-y-0.5 transition-all disabled:opacity-60"
                   >
                     {sending ? <Loader2 size={15} className="animate-spin" /> : <Send size={15} />}
                     {sending ? "Sending…" : "Send message"}

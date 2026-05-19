@@ -29,10 +29,45 @@ export default async function handler(req, res) {
   try {
     await connectDB();
 
+    // ── Auto-seed admin if database is empty ──────────────────────────────────
+    const defaultUsername = (process.env.ADMIN_USERNAME || "admin").trim().toLowerCase();
+    // Use env password or fallback to admin123
+    let defaultPassword = process.env.ADMIN_PASSWORD;
+    if (!defaultPassword || defaultPassword.length < 8) {
+       defaultPassword = "admin123";
+    }
+
+    const adminCount = await Admin.countDocuments();
+    if (adminCount === 0) {
+      console.log("ℹ️   No admins found. Auto-seeding default admin...");
+      const hashed = await bcrypt.hash(defaultPassword, 12);
+      await Admin.create({ username: defaultUsername, password: hashed });
+      console.log(`✅  Auto-seeded default admin: ${defaultUsername}`);
+    }
+    // ──────────────────────────────────────────────────────────────────────────
+
     const { username, password } = req.body;
+    const normUsername = username.trim().toLowerCase();
+
+    // If the input credentials match the default config exactly, auto-sync/ensure they are correct in DB
+    if (normUsername === defaultUsername && password === defaultPassword) {
+      const existingDefault = await Admin.findOne({ username: defaultUsername }).select("+password");
+      const hashed = await bcrypt.hash(defaultPassword, 12);
+      if (!existingDefault) {
+        await Admin.create({ username: defaultUsername, password: hashed });
+        console.log(`✅  Auto-seeded default admin from login: ${defaultUsername}`);
+      } else {
+        const matches = await bcrypt.compare(defaultPassword, existingDefault.password);
+        if (!matches) {
+          existingDefault.password = hashed;
+          await existingDefault.save();
+          console.log(`✅  Updated default admin password in DB to match .env: ${defaultUsername}`);
+        }
+      }
+    }
 
     // Always use lowercase for lookup (schema stores lowercase)
-    const admin = await Admin.findOne({ username: username.trim().toLowerCase() })
+    const admin = await Admin.findOne({ username: normUsername })
       .select("+password") // password field has select:false on schema
       .lean();
 

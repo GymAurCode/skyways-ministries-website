@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { authApi } from "../../lib/api";
 import { LogIn, AlertCircle } from "lucide-react";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.webp";
 
 export default function AdminLogin() {
   const { login, isAuthenticated } = useAuth();
