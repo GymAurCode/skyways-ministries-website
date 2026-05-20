@@ -43,6 +43,8 @@ export interface Donation {
   createdAt: string;
   reviewed_at?: string;
   reviewed_by?: string;
+  image_url?: string;
+  image_public_id?: string;
 }
 
 export interface Testimonial {

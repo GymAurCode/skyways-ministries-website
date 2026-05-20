@@ -102,7 +102,7 @@ export const galleryApi = {
 };
 
 export const donationApi = {
-  submit: (data: { name: string; amount: number; method: string; transaction_id: string }) =>
+  submit: (data: { name: string; amount: number; method: string; transaction_id: string; image_base64?: string }) =>
     request<DonationResponse>("/donations", {
       method: "POST",
       body: JSON.stringify(data),
@@ -225,6 +225,8 @@ export interface DonationResponse {
   transaction_id: string;
   status: "pending" | "confirmed" | "rejected";
   createdAt: string;
+  image_url?: string;
+  image_public_id?: string;
 }
 
 export interface TestimonialResponse {

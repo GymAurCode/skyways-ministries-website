@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { donationApi } from "../../lib/api";
 import type { Donation } from "../../types";
-import { CheckCircle, XCircle, Clock, Loader, Heart, TrendingUp, Trash2 } from "lucide-react";
+import { CheckCircle, XCircle, Clock, Loader, Heart, TrendingUp, Trash2, ExternalLink } from "lucide-react";
 
 type Filter = "all" | "pending" | "confirmed" | "rejected";
 
@@ -152,7 +152,7 @@ export default function AdminDonations() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-neutral-100 bg-neutral-50 text-left">
-                  {["Donor", "Amount", "Method", "Transaction ID", "Date", "Status", "Actions"].map(
+                  {["Donor", "Amount", "Method", "Transaction ID", "Receipt", "Date", "Status", "Actions"].map(
                     (h) => (
                       <th
                         key={h}
@@ -178,6 +178,21 @@ export default function AdminDonations() {
                     </td>
                     <td className="px-4 py-3 text-neutral-500 text-xs font-mono whitespace-nowrap">
                       {d.transaction_id || <span className="text-neutral-300">—</span>}
+                    </td>
+                    <td className="px-4 py-3 whitespace-nowrap">
+                      {d.image_url ? (
+                        <a
+                          href={d.image_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs font-medium text-sky-600 hover:text-sky-700 bg-sky-50 hover:bg-sky-100 px-2.5 py-1 rounded-md transition-colors"
+                        >
+                          <ExternalLink size={12} />
+                          <span>View Proof</span>
+                        </a>
+                      ) : (
+                        <span className="text-neutral-400 text-xs">No proof</span>
+                      )}
                     </td>
                     <td className="px-4 py-3 text-neutral-500 text-xs whitespace-nowrap">
                       {new Date(d.createdAt).toLocaleDateString("en-PK", {

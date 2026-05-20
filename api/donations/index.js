@@ -3,6 +3,7 @@ import { Donation } from "../lib/models.js";
 import { requireAuth } from "../lib/auth.js";
 import { validateDonation, sanitizeString } from "../lib/validate.js";
 import { checkRateLimit, getClientIp } from "../lib/rateLimit.js";
+import { uploadToCloudinary } from "../lib/cloudinary.js";
 
 export default async function handler(req, res) {
   if (req.method === "OPTIONS") return res.status(200).end();
@@ -45,6 +46,28 @@ export default async function handler(req, res) {
     }
 
     try {
+      let image_url = "";
+      let image_public_id = "";
+
+      if (body.image_base64) {
+        if (typeof body.image_base64 !== "string" || !body.image_base64.startsWith("data:image/")) {
+          return res.status(400).json({ error: "Invalid image format. Must be a base64 data URI." });
+        }
+
+        const MAX_BASE64_BYTES = 14 * 1024 * 1024; // ~10MB binary limit
+        if (Buffer.byteLength(body.image_base64, "utf8") > MAX_BASE64_BYTES) {
+          return res.status(413).json({ error: "Receipt image is too large. Maximum size is 10MB." });
+        }
+
+        const upload = await uploadToCloudinary(body.image_base64, "skyway/donations");
+        if (upload.url && upload.public_id) {
+          image_url = upload.url;
+          image_public_id = upload.public_id;
+        } else {
+          return res.status(500).json({ error: "Failed to upload receipt image to storage." });
+        }
+      }
+
       const donation = await Donation.create({
         name: sanitizeString(body.name),
         amount: Number(body.amount),
@@ -52,6 +75,8 @@ export default async function handler(req, res) {
         transaction_id: sanitizeString(body.transaction_id || ""),
         status: "pending",
         ip_address: ip,
+        image_url,
+        image_public_id,
       });
 
       // Return only safe fields — never expose ip_address to the submitter
@@ -61,6 +86,7 @@ export default async function handler(req, res) {
         amount: donation.amount,
         method: donation.method,
         status: donation.status,
+        image_url: donation.image_url,
         createdAt: donation.createdAt,
       });
     } catch (err) {

@@ -156,6 +156,8 @@ const donationSchema = new mongoose.Schema(
       default: "pending",
     },
     ip_address: { type: String, default: "" }, // for audit / rate-limit reference
+    image_url: { type: String, default: "" },
+    image_public_id: { type: String, default: "" },
     reviewed_at: { type: Date, default: null },
     reviewed_by: { type: String, default: "" },
   },
