@@ -3,6 +3,7 @@ import { Donation } from "../lib/models.js";
 import { requireAuth } from "../lib/auth.js";
 
 export default async function handler(req, res) {
+  if (req.method === "OPTIONS") return res.status(200).end();
   // ── PATCH: protected ─────────────────────────────────────────────────────
   if (req.method === "PATCH") {
     let decoded;

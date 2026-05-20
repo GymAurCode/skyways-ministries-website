@@ -8,6 +8,7 @@ import { sanitizeString } from "../lib/validate.js";
 const MAX_BASE64_BYTES = 14 * 1024 * 1024;
 
 export default async function handler(req, res) {
+  if (req.method === "OPTIONS") return res.status(200).end();
   await connectDB();
 
   // ── GET: public ──────────────────────────────────────────────────────────

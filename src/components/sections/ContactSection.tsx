@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Clock, Send, MessageSquare, AlertCircle, CheckCircle, Loader2 } from "lucide-react";
+import { Mail, Phone, MapPin, Send, MessageSquare, AlertCircle, CheckCircle, Loader2 } from "lucide-react";
 import ScrollReveal from "../ScrollReveal";
 import { fadeInLeft, fadeInRight } from "../../lib/animations";
 import type { SiteContent } from "../../types";
@@ -9,12 +9,6 @@ import { messagesApi } from "../../lib/api";
 interface Props {
   content: SiteContent;
 }
-
-const serviceSchedule = [
-  { day: "Sunday", time: "9:00 AM & 11:00 AM", type: "Main Service" },
-  { day: "Wednesday", time: "7:00 PM", type: "Bible Study" },
-  { day: "Friday", time: "6:30 PM", type: "Prayer Night" },
-];
 
 export default function ContactSection({ content }: Props) {
   const { isDark } = useTheme();
@@ -114,32 +108,6 @@ export default function ContactSection({ content }: Props) {
                 ) : null
               )}
 
-              <div className="rounded-2xl p-6 glass-sky">
-                <h4 className={`font-heading font-semibold text-base mb-5 flex items-center gap-2 ${isDark ? "text-white" : "text-slate-800"}`}>
-                  <Clock size={16} className="text-sky-500 dark:text-sky-400" />
-                  Service schedule
-                </h4>
-                <div className="space-y-3">
-                  {serviceSchedule.map((s) => (
-                    <div
-                      key={s.day}
-                      className={`flex items-center justify-between py-2.5 border-b last:border-0 ${isDark ? "border-white/5" : "border-slate-100"}`}
-                    >
-                      <div>
-                        <div className={`text-sm font-semibold ${isDark ? "text-white" : "text-slate-800"}`}>{s.day}</div>
-                        <div className={`text-xs ${isDark ? "text-slate-500" : "text-slate-400"}`}>{s.type}</div>
-                      </div>
-                      <span
-                        className={`text-xs font-medium px-3 py-1 rounded-full ${
-                          isDark ? "bg-sky-500/10 text-sky-300 border border-sky-500/15" : "bg-sky-50 text-sky-700 border border-sky-100"
-                        }`}
-                      >
-                        {s.time}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
           </ScrollReveal>
 

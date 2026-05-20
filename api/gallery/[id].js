@@ -5,6 +5,7 @@ import { deleteFromCloudinary } from "../lib/cloudinary.js";
 import { sanitizeString } from "../lib/validate.js";
 
 export default async function handler(req, res) {
+  if (req.method === "OPTIONS") return res.status(200).end();
   try {
     requireAuth(req);
   } catch (err) {

@@ -5,6 +5,7 @@ import { validateContactMessage, sanitizeString } from "../lib/validate.js";
 import { checkRateLimit, getClientIp } from "../lib/rateLimit.js";
 
 export default async function handler(req, res) {
+  if (req.method === "OPTIONS") return res.status(200).end();
   await connectDB();
 
   if (req.method === "GET") {
