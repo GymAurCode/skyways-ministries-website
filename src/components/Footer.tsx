@@ -164,8 +164,6 @@ export default function Footer({ content }: { content: SiteContent }) {
             &copy; {year} {content.institute_name || "SKYWAY MINISTRIES OF CHRIST"}. All rights reserved.
           </span>
           <span className="text-slate-600 text-xs flex items-center gap-1.5 flex-wrap justify-center sm:justify-end">
-            <span>Built with <Heart size={10} className="text-rose-500 fill-rose-500 inline" /> for the Kingdom of God</span>
-            <span className="text-slate-700 font-light">|</span>
             <span>
               Developed by{" "}
               <a
