@@ -284,24 +284,24 @@ export default function AdminTestimonials() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-neutral-50 text-left text-neutral-600">
-                  <th className="px-4 py-3 font-medium">Order</th>
-                  <th className="px-4 py-3 font-medium">Name</th>
-                  <th className="px-4 py-3 font-medium">Message</th>
-                  <th className="px-4 py-3 font-medium w-32">Actions</th>
+                  <th className="px-4 py-3 font-medium whitespace-nowrap">Order</th>
+                  <th className="px-4 py-3 font-medium whitespace-nowrap">Name</th>
+                  <th className="px-4 py-3 font-medium whitespace-nowrap">Message</th>
+                  <th className="px-4 py-3 font-medium w-32 whitespace-nowrap">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {list.map((t) => (
                   <tr key={t._id} className="border-t border-neutral-100 hover:bg-neutral-50/80">
-                    <td className="px-4 py-3 text-neutral-500">{t.sort_order}</td>
-                    <td className="px-4 py-3 font-medium text-neutral-900">
+                    <td className="px-4 py-3 text-neutral-500 whitespace-nowrap">{t.sort_order}</td>
+                    <td className="px-4 py-3 font-medium text-neutral-900 whitespace-nowrap">
                       {t.name}
                       {t.role ? <div className="text-xs font-normal text-neutral-500">{t.role}</div> : null}
                     </td>
                     <td className="px-4 py-3 text-neutral-600 max-w-md truncate" title={t.message}>
                       {t.message}
                     </td>
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-3 whitespace-nowrap">
                       <div className="flex items-center gap-1">
                         <button
                           type="button"
@@ -331,7 +331,7 @@ export default function AdminTestimonials() {
 
       {editId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50" role="dialog">
-          <div className="bg-white rounded-xl shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6">
+          <div className="bg-white rounded-xl shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-4 sm:p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-heading text-lg font-semibold text-neutral-900">Edit testimonial</h3>
               <button type="button" onClick={cancelEdit} className="p-2 rounded-lg hover:bg-neutral-100 text-neutral-500">

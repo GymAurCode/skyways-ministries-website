@@ -9,7 +9,7 @@ export default function Footer({ content }: { content: SiteContent }) {
   const quickLinks = [
     { label: "Home", href: "/" },
     { label: "About", href: "/#about" },
-    { label: "Gallery", href: "/gallery" },
+    { label: "Gallery", href: "/#gallery" },
     { label: "Donation", href: "/#donation" },
     { label: "Contact", href: "/#contact" },
   ];

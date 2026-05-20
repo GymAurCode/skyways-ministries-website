@@ -118,7 +118,7 @@ export default function AdminSettings() {
 
       <div className="max-w-md space-y-6">
         {/* Change Password */}
-        <div className="bg-white rounded-xl border border-neutral-200 p-6">
+        <div className="bg-white rounded-xl border border-neutral-200 p-4 sm:p-6">
           <div className="flex items-center gap-2 mb-5">
             <KeyRound size={18} className="text-primary-600" />
             <h2 className="font-heading font-semibold text-neutral-900">Change Password</h2>

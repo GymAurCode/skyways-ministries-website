@@ -10,9 +10,9 @@ interface Props {
 }
 
 const navLinks = [
-  { to: "/", label: "Home" },
+  { to: "/#home", label: "Home", scroll: true },
   { to: "/#about", label: "About", scroll: true },
-  { to: "/gallery", label: "Gallery", scroll: false },
+  { to: "/#gallery", label: "Gallery", scroll: true },
   { to: "/#donation", label: "Donation", scroll: true },
   { to: "/#contact", label: "Contact", scroll: true },
 ];
@@ -38,16 +38,19 @@ export default function Navbar({ content }: Props) {
       const el = document.getElementById(id);
       if (el) {
         el.scrollIntoView({ behavior: "smooth" });
-        setOpen(false);
       }
     }
+    setOpen(false);
   };
 
   const isActive = (to: string) => {
-    if (to === "/") return location.pathname === "/" && !location.hash;
-    if (to === "/gallery") return location.pathname === "/gallery";
-    if (to.includes("#")) return location.hash === `#${to.split("#")[1]}`;
-    return false;
+    if (to === "/#home") {
+      return location.pathname === "/" && (location.hash === "" || location.hash === "#home");
+    }
+    if (to.includes("#")) {
+      return location.pathname === "/" && location.hash === `#${to.split("#")[1]}`;
+    }
+    return location.pathname === to;
   };
 
   const onTopHero = !scrolled && location.pathname === "/";
@@ -73,6 +76,9 @@ export default function Navbar({ content }: Props) {
               <img
                 src={logo}
                 alt="Skyway Ministries Logo"
+                width={36}
+                height={36}
+                fetchPriority="high"
                 className="relative h-9 w-9 rounded-full object-cover ring-2 ring-sky-300/50 group-hover:ring-sky-200 transition-all duration-300 group-hover:scale-105"
               />
             </div>

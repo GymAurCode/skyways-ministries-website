@@ -69,7 +69,7 @@ export default function AdminDonations() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         {[
           {
             icon: Heart,
@@ -120,7 +120,7 @@ export default function AdminDonations() {
       {/* Table */}
       <div className="bg-white rounded-xl border border-neutral-200 overflow-hidden">
         <div className="p-4 border-b border-neutral-100 flex flex-wrap items-center gap-3">
-          <div className="flex gap-1">
+          <div className="flex flex-wrap gap-1">
             {(["all", "pending", "confirmed", "rejected"] as Filter[]).map((f) => (
               <button
                 key={f}
@@ -156,7 +156,7 @@ export default function AdminDonations() {
                     (h) => (
                       <th
                         key={h}
-                        className="px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider"
+                        className="px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider whitespace-nowrap"
                       >
                         {h}
                       </th>
@@ -167,16 +167,16 @@ export default function AdminDonations() {
               <tbody className="divide-y divide-neutral-100">
                 {filtered.map((d) => (
                   <tr key={d._id} className="hover:bg-neutral-50 transition-colors">
-                    <td className="px-4 py-3 font-medium text-neutral-900">{d.name}</td>
-                    <td className="px-4 py-3 text-neutral-700 font-semibold">
+                    <td className="px-4 py-3 font-medium text-neutral-900 whitespace-nowrap">{d.name}</td>
+                    <td className="px-4 py-3 text-neutral-700 font-semibold whitespace-nowrap">
                       ₨{Number(d.amount).toLocaleString()}
                     </td>
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-3 whitespace-nowrap">
                       <span className="bg-neutral-100 text-neutral-700 px-2 py-0.5 rounded text-xs">
                         {d.method}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-neutral-500 text-xs font-mono">
+                    <td className="px-4 py-3 text-neutral-500 text-xs font-mono whitespace-nowrap">
                       {d.transaction_id || <span className="text-neutral-300">—</span>}
                     </td>
                     <td className="px-4 py-3 text-neutral-500 text-xs whitespace-nowrap">
@@ -186,7 +186,7 @@ export default function AdminDonations() {
                         year: "numeric",
                       })}
                     </td>
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-3 whitespace-nowrap">
                       <span className={statusBadge(d.status)}>
                         {d.status === "pending" && <Clock size={11} />}
                         {d.status === "confirmed" && <CheckCircle size={11} />}
@@ -194,7 +194,7 @@ export default function AdminDonations() {
                         {d.status}
                       </span>
                     </td>
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-3 whitespace-nowrap">
                       {d.status === "pending" ? (
                         <div className="flex items-center gap-1.5">
                           <button

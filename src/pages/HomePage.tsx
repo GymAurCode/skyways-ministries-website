@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import AOS from "aos";
 import { useSiteContent } from "../hooks/useSiteContent";
 import Navbar from "../components/Navbar";
@@ -16,6 +17,7 @@ import { useTheme } from "../contexts/ThemeContext";
 export default function HomePage() {
   const { content, loading } = useSiteContent();
   const { isDark } = useTheme();
+  const location = useLocation();
 
   useEffect(() => {
     if (!loading) {
@@ -24,21 +26,20 @@ export default function HomePage() {
     }
   }, [loading]);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center page-sky-bg">
-        <div className="flex flex-col items-center gap-5">
-          <div
-            className="h-12 w-12 rounded-full border-2 border-sky-300/30 border-t-sky-400 animate-spin"
-            aria-hidden
-          />
-          <p className="text-slate-500 dark:text-slate-400 text-sm font-medium tracking-widest uppercase">
-            Loading…
-          </p>
-        </div>
-      </div>
-    );
-  }
+  useEffect(() => {
+    if (!loading && location.hash) {
+      const id = location.hash.replace("#", "");
+      const timer = setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [loading, location.hash]);
+
+
 
   return (
     <div

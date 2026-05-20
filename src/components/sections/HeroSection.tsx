@@ -1,5 +1,4 @@
 import { Play } from "lucide-react";
-import { Link } from "react-router-dom";
 import type { SiteContent } from "../../types";
 import skywaysDefault from "../../assets/skyways.webp";
 
@@ -13,6 +12,7 @@ export default function HeroSection({ content }: Props) {
 
   return (
     <section
+      id="home"
       className="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden"
       aria-label="Hero section"
     >
@@ -46,67 +46,31 @@ export default function HeroSection({ content }: Props) {
         <div className="absolute left-[20%] bottom-[8%] h-32 w-[40%] rounded-full bg-slate-100/10 blur-3xl opacity-60" />
       </div>
 
-      {/* Main copy — AOS only */}
+      {/* Main copy — Rendered immediately for SEO and performance */}
       <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center pt-28 pb-28 sm:pt-32 sm:pb-32">
-        <p
-          className="font-heading text-[10px] sm:text-xs font-semibold tracking-[0.35em] text-sky-200/90 uppercase mb-6"
-          data-aos="fade-up"
-          data-aos-duration="900"
-          data-aos-delay="0"
-          data-aos-once="true"
-        >
+        <p className="font-heading text-[10px] sm:text-xs font-semibold tracking-[0.35em] text-sky-200/90 uppercase mb-6">
           {content.tagline || "A path to heaven · A spiritual way to the sky"}
         </p>
 
-        <h1
-          className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.08] tracking-[0.02em] text-white drop-shadow-[0_4px_32px_rgba(0,0,0,0.35)]"
-          data-aos="fade-up"
-          data-aos-duration="900"
-          data-aos-delay="120"
-          data-aos-once="true"
-        >
+        <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.08] tracking-[0.02em] text-white drop-shadow-[0_4px_32px_rgba(0,0,0,0.35)]">
           {title}
         </h1>
 
-        <p
-          className="mt-6 sm:mt-8 font-heading text-lg sm:text-2xl md:text-3xl font-medium tracking-[0.2em] sm:tracking-[0.28em] text-sky-100/95 uppercase"
-          data-aos="fade-up"
-          data-aos-duration="900"
-          data-aos-delay="240"
-          data-aos-once="true"
-        >
+        <p className="mt-6 sm:mt-8 font-heading text-lg sm:text-2xl md:text-3xl font-medium tracking-[0.2em] sm:tracking-[0.28em] text-sky-100/95 uppercase">
           {content.hero_title || "Teach - Preach - Heal"}
         </p>
 
-        <p
-          className="mt-4 font-heading text-sm sm:text-base tracking-[0.35em] text-sky-200/80 uppercase"
-          data-aos="fade-up"
-          data-aos-duration="800"
-          data-aos-delay="360"
-          data-aos-once="true"
-        >
+        <p className="mt-4 font-heading text-sm sm:text-base tracking-[0.35em] text-sky-200/80 uppercase">
           {content.since || "SINCE 2023"}
         </p>
 
         {content.hero_description && (
-          <p
-            className="mt-8 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-slate-200/95 font-light"
-            data-aos="fade-up"
-            data-aos-duration="800"
-            data-aos-delay="480"
-            data-aos-once="true"
-          >
+          <p className="mt-8 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-slate-200/95 font-light">
             {content.hero_description}
           </p>
         )}
 
-        <div
-          className="mt-10 sm:mt-12 flex flex-wrap items-center justify-center gap-3"
-          data-aos="fade-up"
-          data-aos-duration="800"
-          data-aos-delay="560"
-          data-aos-once="true"
-        >
+        <div className="mt-10 sm:mt-12 flex flex-wrap items-center justify-center gap-3">
           <a
             href="#about"
             onClick={(e) => {
@@ -117,15 +81,19 @@ export default function HeroSection({ content }: Props) {
           >
             Our mission
           </a>
-          <Link
-            to="/gallery"
+          <a
+            href="#gallery"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
+            }}
             className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-slate-950/35 backdrop-blur-md border border-white/15 text-white text-sm font-semibold hover:bg-slate-950/50 hover:-translate-y-0.5 transition-all duration-300"
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
               <Play size={12} className="ml-0.5" fill="currentColor" />
             </span>
             Gallery
-          </Link>
+          </a>
           <a
             href="#donation"
             onClick={(e) => {
@@ -140,13 +108,7 @@ export default function HeroSection({ content }: Props) {
       </div>
 
       {/* Scroll hint — CSS only (scroll-indicator in index.css) */}
-      <div
-        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2"
-        data-aos="fade-in"
-        data-aos-delay="900"
-        data-aos-duration="600"
-        data-aos-once="true"
-      >
+      <div className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2">
         <span className="text-slate-400 text-[10px] font-medium tracking-widest uppercase">Scroll</span>
         <div className="scroll-indicator border-slate-400/50" />
       </div>

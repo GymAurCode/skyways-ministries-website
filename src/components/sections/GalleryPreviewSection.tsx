@@ -31,7 +31,7 @@ export default function GalleryPreviewSection() {
   }, [lightbox]);
 
   return (
-    <section id="gallery-preview" className="relative py-24 md:py-28 overflow-hidden cloud-texture">
+    <section id="gallery" className="relative py-24 md:py-28 overflow-hidden cloud-texture">
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute top-0 left-0 right-0 section-divider-sky opacity-70" />
       </div>

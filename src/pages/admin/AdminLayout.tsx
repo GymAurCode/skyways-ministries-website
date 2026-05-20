@@ -121,7 +121,7 @@ export default function AdminLayout() {
         </>
       )}
 
-      <div className="flex-1 lg:ml-60 flex flex-col min-h-screen">
+      <div className="flex-1 lg:ml-60 flex flex-col min-h-screen min-w-0">
         <header className="bg-white border-b border-neutral-200 px-4 sm:px-6 h-14 flex items-center justify-between sticky top-0 z-20 shadow-sm">
           <button
             type="button"

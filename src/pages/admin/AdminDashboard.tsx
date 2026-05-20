@@ -34,9 +34,9 @@ function StatCard({
       <div className={`h-12 w-12 rounded-xl ${color} flex items-center justify-center shrink-0 transition-transform duration-200 hover:scale-105`}>
         <Icon size={22} />
       </div>
-      <div>
-        <div className="text-2xl font-bold text-neutral-900">{value}</div>
-        <div className="text-sm text-neutral-500">{label}</div>
+      <div className="min-w-0 flex-1">
+        <div className="text-xl sm:text-2xl font-bold text-neutral-900 truncate" title={String(value)}>{value}</div>
+        <div className="text-sm text-neutral-500 truncate" title={label}>{label}</div>
       </div>
     </div>
   );
