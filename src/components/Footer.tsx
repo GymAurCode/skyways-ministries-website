@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Globe, Share2, MessageCircle, PlayCircle, ArrowRight, Heart, Sparkles } from "lucide-react";
+import { Mail, Phone, MapPin, Globe, Share2, MessageCircle, PlayCircle, ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { SiteContent } from "../types";
 import logo from "../assets/logo.webp";
